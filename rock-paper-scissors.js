@@ -16,8 +16,9 @@ function computerPlay(){
     return result;
 }
 
-console.log(playRound());
+// console.log(playRound());
 // computerPlay();
+game();
 
 
 
@@ -76,4 +77,31 @@ function game(){
     let numberOfRounds = 0;
     let playerScore = 0;
     let computerScore = 0;
+
+    function displayScore(){
+        alert(`player score: ${playerScore}
+        computer score: ${computerScore}
+        round: ${numberOfRounds}`);
+    }
+
+    while (numberOfRounds < 5){
+        let result = playRound();
+        if (result = "tie"){
+            numberOfRounds++;
+            displayScore();
+            
+        } else if (result = "player win"){
+            playerScore++;
+            numberOfRounds++;
+            displayScore();
+        } else if (result = "player loss"){
+            computerScore++;
+            numberOfRounds++;
+            displayScore();
+        }
+    }
+    alert(`Game over!
+    player score: ${playerScore}
+    computer score: ${computerScore}
+    round: ${numberOfRounds}`)
 }
