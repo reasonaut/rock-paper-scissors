@@ -12,12 +12,9 @@ function computerPlay(){
         case 2:
             result = "scissors";
     }
-    console.log(result);
     return result;
 }
 
-// console.log(playRound());
-// computerPlay();
 game();
 
 
@@ -29,7 +26,6 @@ function promptPlayer(){
         selection = prompt("Select 'rock', 'paper', or 'scissors'");
         selection = selection.toLowerCase();
     }
-    console.log(selection);
     return selection;
 }
 
@@ -41,32 +37,32 @@ function playRound(){
         if (computerChoice == "rock"){
             alert("You and the computer both picked rock! No points!");
             return "tie";
-        } else if (computerChoice = "paper"){
+        } else if (computerChoice === "paper"){
             alert("Computer picked 'paper', you lose with rock!");
             return "player loss";
-        } else if (computerChoice = "scissors"){
+        } else if (computerChoice === "scissors"){
             alert("Computer picked 'scissors', you win with rock!");
             return "player win";
         }
     } else if (playerChoice === "paper") {
-        if (computerChoice == "paper"){
+        if (computerChoice === "paper"){
             alert("You and the computer both picked paper! No points!");
             return "tie";
-        } else if (computerChoice == "rock"){
+        } else if (computerChoice === "rock"){
             alert("Computer picked 'rock', you win with paper!");
             return "player win";
-        } else if (computerChoice = "scissors"){
+        } else if (computerChoice === "scissors"){
             alert("Computer picked 'scissors', you lose with paper!");
             return "player loss";
         }
     } else if (playerChoice === "scissors") {
-        if (computerChoice == "scissors"){
+        if (computerChoice === "scissors"){
             alert("You and the computer both picked scissors! No points!");
             return "tie";
-        } else if (computerChoice == "rock"){
+        } else if (computerChoice === "rock"){
             alert("Computer picked 'rock', you lose with scissors!");
             return "player loss";
-        } else if (computerChoice = "paper"){
+        } else if (computerChoice === "paper"){
             alert("Computer picked 'paper', you win with scissors!");
             return "player win";
         }
@@ -79,29 +75,31 @@ function game(){
     let computerScore = 0;
 
     function displayScore(){
-        alert(`player score: ${playerScore}
-        computer score: ${computerScore}
-        round: ${numberOfRounds}`);
+        alert(`player score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}`);
+        console.log(playerScore);
+        console.log(computerScore);
     }
 
     while (numberOfRounds < 5){
         let result = playRound();
-        if (result = "tie"){
+        if (result === "tie"){
             numberOfRounds++;
             displayScore();
             
-        } else if (result = "player win"){
+        } else if (result === "player win"){
             playerScore++;
             numberOfRounds++;
             displayScore();
-        } else if (result = "player loss"){
+        } else if (result === "player loss"){
             computerScore++;
             numberOfRounds++;
             displayScore();
         }
+        console.log(result);
     }
-    alert(`Game over!
-    player score: ${playerScore}
-    computer score: ${computerScore}
-    round: ${numberOfRounds}`)
+    let gameResult
+    if (playerScore > computerScore) gameResult = "You win!";
+    if (computerScore > playerScore) gameResult = "Computer wins!";
+    if (computerScore === playerScore) gameResult = "It's a tie!";
+    alert(`Game over!\nplayer score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}` + `\n${gameResult}`)
 }
