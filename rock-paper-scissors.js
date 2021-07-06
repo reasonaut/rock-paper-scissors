@@ -1,3 +1,14 @@
+const choices = document.querySelectorAll('.playerSelect');
+console.log(choices);
+choices.forEach(button => {
+    button.addEventListener('click', playerSelectionMade)
+});
+function playerSelectionMade(e){
+    const selectedButton = document.querySelector(`button[id='rock']`);
+    console.log(selectedButton);
+    console.log(e.target.id);
+}
+
 function computerPlay(){
     // pick random object
     const selection = Math.floor(Math.random()*3);
@@ -14,10 +25,6 @@ function computerPlay(){
     }
     return result;
 }
-
-game();
-
-
 
 function promptPlayer(){
     // prompt player for selection
@@ -103,3 +110,4 @@ function game(){
     if (computerScore === playerScore) gameResult = "It's a tie!";
     alert(`Game over!\nplayer score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}` + `\n${gameResult}`)
 }
+// game();
