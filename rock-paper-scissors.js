@@ -1,12 +1,48 @@
 const choices = document.querySelectorAll('.playerSelect');
-console.log(choices);
 choices.forEach(button => {
     button.addEventListener('click', playerSelectionMade)
 });
+let numberOfRounds = 0;
+let playerScore = 0;
+let computerScore = 0;
+
 function playerSelectionMade(e){
-    const selectedButton = document.querySelector(`button[id='rock']`);
-    console.log(selectedButton);
-    console.log(e.target.id);
+    const roundResult = playRound(e.target.id);
+    const roundResultContainer = document.querySelector('#roundResult');
+    roundResultContainer.textContent = roundResult;
+    document.querySelector('#playerScore').textContent = `Player score: ${playerScore}`;
+    document.querySelector('#computerScore').textContent = `Computer score: ${computerScore}`;
+    if (playerScore === 5 || computerScore === 5){
+        if (playerScore === 5){
+            roundResultContainer.append('  Game Over, You win!    ');
+        } else if (computerScore === 5){
+            roundResultContainer.append('  Game Over, Computer wins!    ')
+        }
+        const newGameButton = document.createElement('button');
+        newGameButton.textContent = 'reset game?'
+        newGameButton.id = 'resetGame'
+        newGameButton.addEventListener('click', gameReset);
+        // disable choice buttons until a new game is started
+        choices.forEach(button => {
+            button.removeEventListener('click', playerSelectionMade);
+        })
+        roundResultContainer.appendChild(newGameButton);
+        
+    }
+
+}
+
+function gameReset(){
+    numberOfRounds = 0;
+    playerScore = 0;
+    computerScore = 0;
+    document.querySelector('#playerScore').textContent = '';
+    document.querySelector('#computerScore').textContent = '';
+    document.querySelector('#roundResult').textContent = '';
+    // reenable choice buttons
+    choices.forEach(button => {
+        button.addEventListener('click', playerSelectionMade)
+    });
 }
 
 function computerPlay(){
@@ -26,60 +62,52 @@ function computerPlay(){
     return result;
 }
 
-function promptPlayer(){
-    // prompt player for selection
-    let selection;
-    while (selection != 'rock' && selection != 'paper' && selection != 'scissors'){
-        selection = prompt("Select 'rock', 'paper', or 'scissors'");
-        selection = selection.toLowerCase();
-    }
-    return selection;
-}
-
-function playRound(){
-    let playerChoice = promptPlayer();
+function playRound(playerSelection){
     let computerChoice = computerPlay();
+    // display computer choice
+    const computerChoiceH2 = document.querySelector('#computerChoice');
+    console.log(computerChoiceH2);
+    computerChoiceH2.textContent = computerChoice
+    const playerChoiceH2 = document.querySelector('#playerChoice');
+    playerChoiceH2.textContent = playerSelection;
+    numberOfRounds++;
+
     // determine winner and return result
-    if (playerChoice === "rock") {
-        if (computerChoice == "rock"){
-            alert("You and the computer both picked rock! No points!");
+    if (playerSelection === "rock") {
+        if (computerChoice == "rock"){            
             return "tie";
         } else if (computerChoice === "paper"){
-            alert("Computer picked 'paper', you lose with rock!");
+            computerScore++;
             return "player loss";
         } else if (computerChoice === "scissors"){
-            alert("Computer picked 'scissors', you win with rock!");
+            playerScore++;
             return "player win";
         }
-    } else if (playerChoice === "paper") {
+    } else if (playerSelection === "paper") {
         if (computerChoice === "paper"){
-            alert("You and the computer both picked paper! No points!");
             return "tie";
         } else if (computerChoice === "rock"){
-            alert("Computer picked 'rock', you win with paper!");
+            playerScore++;
             return "player win";
         } else if (computerChoice === "scissors"){
-            alert("Computer picked 'scissors', you lose with paper!");
+            computerScore++;
             return "player loss";
         }
-    } else if (playerChoice === "scissors") {
+    } else if (playerSelection === "scissors") {
         if (computerChoice === "scissors"){
-            alert("You and the computer both picked scissors! No points!");
             return "tie";
         } else if (computerChoice === "rock"){
-            alert("Computer picked 'rock', you lose with scissors!");
+            computerScore++;
             return "player loss";
         } else if (computerChoice === "paper"){
-            alert("Computer picked 'paper', you win with scissors!");
+            playerScore++;
             return "player win";
         }
     }
 }
 
 function game(){
-    let numberOfRounds = 0;
-    let playerScore = 0;
-    let computerScore = 0;
+    
 
     function displayScore(){
         alert(`player score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}`);

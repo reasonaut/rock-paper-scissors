@@ -1,24 +1,51 @@
 html, body {
     height: 100%;
     width: 100%;
+    background-color: gray;
+    margin: 0px;
 }
 button {
     width: 100px;
     height: 100px;
-    position: relative;
-    top: 50%;
+}
+#buttons {
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    height: 5%;
 }
 #buttonsContainer {
+    position: relative;
     background-color: blue;
-    height: 50%;
+    height: 40%;
     width: 100%;
     padding: 0;
     margin: 0;
     text-align: center;
-    
 }
-#computerChoice {
+#computerChoiceContainer {
     background-color: red;
-    height: 50%;
+    height: 40%;
     width: 100%;
+}
+#computerChoiceContainer, h2 {
+    text-align: center;
+    padding-top: 10px;
+}
+#scoreboard {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: gray;
+    height: 30%;
+    width: 15%;
+    margin-top: 5%;
+}
+#scoreboard p {
+    text-align: center;
+    font-size: 1.2vh;
+}
+#resultContainer {
+    height: 20%;
+    width: 200px;
 }

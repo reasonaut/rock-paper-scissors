@@ -6,14 +6,31 @@
 </head>
 <body>
     <div id='buttonsContainer'>
-        <button type='button' id ='rock' class ='playerSelect'>rock</button>
-        <button type='button' id ='paper' class ='playerSelect'>paper</button>
-        <button type='button' id ='scissors' class ='playerSelect'>scissors</button>
-        
+        <div id='scoreboard'>
+            <p>SCOREBOARD</p>
+            <p id = 'playerScore'></p>
+            <p id = 'computerScore'></p>
+            <p></p>
+            <p>First to 5 wins!</p>
+
+        </div>
+        <div id='buttons'>
+            <button type='button' id ='rock' class ='playerSelect'>rock</button>
+            <button type='button' id ='paper' class ='playerSelect'>paper</button>
+            <button type='button' id ='scissors' class ='playerSelect'>scissors</button>
+            <h2>Your Choice:</h2>
+            <h2 id='playerChoice'></h2>
+        </div>
     </div>
-    <div id='computerChoice'>
-        
+    <div id='computerChoiceContainer'>
+        <h2>Computer Choice:</h2>
+        <p></p>
+        <h2 id='computerChoice'></h2>
     </div>
+    <div id='roundResultContainer'>
+        <h2 id='roundResult'></h2>
+    </div>
+    
     
 
 
