@@ -105,37 +105,3 @@ function playRound(playerSelection){
         }
     }
 }
-
-function game(){
-    
-
-    function displayScore(){
-        alert(`player score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}`);
-        console.log(playerScore);
-        console.log(computerScore);
-    }
-
-    while (numberOfRounds < 5){
-        let result = playRound();
-        if (result === "tie"){
-            numberOfRounds++;
-            displayScore();
-            
-        } else if (result === "player win"){
-            playerScore++;
-            numberOfRounds++;
-            displayScore();
-        } else if (result === "player loss"){
-            computerScore++;
-            numberOfRounds++;
-            displayScore();
-        }
-        console.log(result);
-    }
-    let gameResult
-    if (playerScore > computerScore) gameResult = "You win!";
-    if (computerScore > playerScore) gameResult = "Computer wins!";
-    if (computerScore === playerScore) gameResult = "It's a tie!";
-    alert(`Game over!\nplayer score: ${playerScore}\ncomputer score: ${computerScore}\nround: ${numberOfRounds}` + `\n${gameResult}`)
-}
-// game();
